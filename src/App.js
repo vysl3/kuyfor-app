@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+aimport { useState, useEffect } from "react";
 
 const SUPABASE_URL = "https://ojwtikokfvlcinyudkne.supabase.co";
 const SUPABASE_KEY = "sb_publishable_sfHE0dEzg3EoEVRRd1vphQ_2PObBvv6";
@@ -287,7 +287,7 @@ export default function App() {
           </div>
           <div style={S.scroll}>
             <div style={{...S.hero, paddingBottom:16}}>
-              <div style={{width:60,height:60,borderRadius:30,background:"#C17B5C",color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,fontWeight:800,letterSpacing:-1,margin:"0 auto"}}>VK</div>
+              <div style={{width:60,height:60,borderRadius:30,background:"#111",color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,fontWeight:800,letterSpacing:-1,margin:"0 auto"}}>VK</div>
               <div style={S.heroName}>{formatDate(selectedVisit.date)}</div>
               <div style={S.heroPhone}>{selectedClient.first_name} {selectedClient.last_name}</div>
             </div>
