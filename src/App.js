@@ -173,7 +173,7 @@ export default function App() {
             {loading && <div style={S.loading}>Yükleniyor... ☁️</div>}
             {!loading && filtered.length === 0 && (
               <div style={S.empty}>
-                <div style={{fontSize:48}}>💇‍♀️</div>
+                <div style={{fontSize:48}}>✂</div>
                 <div style={S.emptyText}>Henüz müşteri yok</div>
                 <button style={S.emptyBtn} onClick={() => setView("addClient")}>Müşteri Ekle</button>
               </div>
@@ -287,7 +287,7 @@ export default function App() {
           </div>
           <div style={S.scroll}>
             <div style={{...S.hero, paddingBottom:16}}>
-              <div style={{fontSize:42}}>💇‍♀️</div>
+              <div style={{fontSize:42}}>✂</div>
               <div style={S.heroName}>{formatDate(selectedVisit.date)}</div>
               <div style={S.heroPhone}>{selectedClient.first_name} {selectedClient.last_name}</div>
             </div>
