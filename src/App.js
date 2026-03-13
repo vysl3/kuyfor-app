@@ -73,7 +73,6 @@ export default function App() {
 
   const sortedVisits = (c) => [...(c.visits||[])].sort((a,b) => b.date.localeCompare(a.date));
 
-  // CLIENT CRUD
   const addClient = async () => {
     if (!clientForm.firstName || !clientForm.lastName || !clientForm.phone) {
       showToast("Ad, soyad ve telefon zorunlu ✗", "err"); return;
@@ -114,7 +113,6 @@ export default function App() {
     showToast("Müşteri silindi");
   };
 
-  // VISIT CRUD
   const addVisit = async () => {
     if (!visitForm.date) { showToast("Tarih zorunlu ✗", "err"); return; }
     const newVisit = { id: Date.now(), ...visitForm };
@@ -153,7 +151,7 @@ export default function App() {
 
   return (
     <div style={S.wrap}>
-      {toast && <div style={{...S.toast, background: toast.type==="err"?"#A0523A":"#3A2E28"}}>{toast.msg}</div>}
+      {toast && <div style={{...S.toast, background: toast.type==="err"?"#A0523A":"#111"}}>{toast.msg}</div>}
 
       {/* LIST */}
       {view === "list" && (
@@ -194,7 +192,7 @@ export default function App() {
             {loading && <div style={S.loading}>Yükleniyor... ☁️</div>}
             {!loading && filtered.length === 0 && (
               <div style={S.empty}>
-                <div style={{width:72,height:72,borderRadius:36,background:"#C17B5C",color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontSize:24,fontWeight:800,letterSpacing:-1,margin:"0 auto"}}>VK</div>
+                <div style={{width:72,height:72,borderRadius:36,background:"#111",color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontSize:24,fontWeight:800,letterSpacing:-1,margin:"0 auto"}}>VK</div>
                 <div style={S.emptyText}>Henüz müşteri yok</div>
                 <button style={S.emptyBtn} onClick={() => setView("addClient")}>Müşteri Ekle</button>
               </div>
@@ -302,7 +300,7 @@ export default function App() {
             <button style={S.backBtn} onClick={() => setView("clientDetail")}>‹</button>
             <span style={S.headerTitle}>Ziyaret Detayı</span>
             <button style={S.editBtnH} onClick={() => {
-              setVisitForm({ date: selectedVisit.date, formula: selectedVisit.formula, care: selectedVisit.care });
+              setVisitForm({ date: selectedVisit.date, formula: selectedVisit.formula, haircut: selectedVisit.haircut, care: selectedVisit.care, note: selectedVisit.note });
               setView("editVisit");
             }}>Düzenle</button>
           </div>
@@ -314,7 +312,7 @@ export default function App() {
             </div>
             {selectedVisit.formula && <div style={S.detailCard}><div style={S.detailLabel}>🎨 Boya Formülü</div><div style={S.detailValue}>{selectedVisit.formula}</div></div>}
             {selectedVisit.haircut && <div style={S.detailCard}><div style={S.detailLabel}>✂ Saç Kesimi</div><div style={S.detailValue}>{selectedVisit.haircut}</div></div>}
-            {selectedVisit.care && <div style={S.detailCard}><div style={S.detailLabel}>💆‍♀️ Bakım</div><div style={S.detailValue}>{selectedVisit.care}</div></div>}
+            {selectedVisit.care && <div style={S.detailCard}><div style={S.detailLabel}>💆 Bakım</div><div style={S.detailValue}>{selectedVisit.care}</div></div>}
             {selectedVisit.note && <div style={S.detailCard}><div style={S.detailLabel}>📝 Genel Not</div><div style={S.detailValue}>{selectedVisit.note}</div></div>}
             <button style={S.deleteBtn} onClick={() => deleteVisit(selectedVisit.id)}>🗑 Ziyareti Sil</button>
           </div>
@@ -362,7 +360,7 @@ function VisitFields({ form, setForm }) {
         <input style={S.input} type="date" value={form.date} onChange={e => setForm({...form, date: e.target.value})} />
       </div>
       <div style={S.fieldGroup}>
-        <label style={S.fieldLabel}>Boya Formülü</label>
+        <label style={S.fieldLabel}>🎨 Boya Formülü</label>
         <textarea style={{...S.input, ...S.textarea}} placeholder="Örn: 9.1 + 20vol + Argan — 45dk"
           value={form.formula} onChange={e => setForm({...form, formula: e.target.value})} />
       </div>
@@ -372,7 +370,7 @@ function VisitFields({ form, setForm }) {
           value={form.haircut} onChange={e => setForm({...form, haircut: e.target.value})} />
       </div>
       <div style={S.fieldGroup}>
-        <label style={S.fieldLabel}>Bakım Notu</label>
+        <label style={S.fieldLabel}>💆 Bakım Notu</label>
         <textarea style={{...S.input, ...S.textarea}} placeholder="Örn: Keratin bakım, maske..."
           value={form.care} onChange={e => setForm({...form, care: e.target.value})} />
       </div>
@@ -396,16 +394,17 @@ const S = {
   addBtn: { width:42, height:42, borderRadius:21, background:"#fff", color:"#111", border:"none",
     fontSize:26, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center",
     lineHeight:1, paddingBottom:2 },
-  statsRow: { display:"flex", alignItems:"center", margin:"10px 18px 4px", background:"#111",
+  searchWrap: { margin:"12px 18px 8px", background:"#F2F2F2", borderRadius:14,
+    display:"flex", alignItems:"center", padding:"0 14px", flexShrink:0 },
+  searchIcon: { fontSize:14, marginRight:8, opacity:0.4 },
+  searchInput: { flex:1, border:"none", background:"transparent", padding:"11px 0",
+    fontSize:15, color:"#111", outline:"none", fontFamily:"Georgia, serif" },
+  statsRow: { display:"flex", alignItems:"center", margin:"8px 18px 10px", background:"#111",
     borderRadius:16, padding:"14px 0" },
   statBox: { flex:1, display:"flex", flexDirection:"column", alignItems:"center" },
   statNum: { fontSize:22, fontWeight:700, color:"#fff", letterSpacing:-0.5 },
   statLabel: { fontSize:11, color:"#888", marginTop:2, letterSpacing:0.5 },
   statDivider: { width:1, height:30, background:"#333" },
-    display:"flex", alignItems:"center", padding:"0 14px", flexShrink:0 },
-  searchIcon: { fontSize:14, marginRight:8, opacity:0.4 },
-  searchInput: { flex:1, border:"none", background:"transparent", padding:"11px 0",
-    fontSize:15, color:"#111", outline:"none", fontFamily:"Georgia, serif" },
   scroll: { flex:1, overflowY:"auto", padding:"8px 0 40px" },
   loading: { textAlign:"center", padding:"40px", color:"#888", fontSize:16, fontStyle:"italic" },
   card: { width:"calc(100% - 36px)", background:"#F8F8F8", border:"0.5px solid #E5E5E5", borderRadius:18,
