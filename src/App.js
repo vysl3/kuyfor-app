@@ -1,4 +1,4 @@
-aimport { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const SUPABASE_URL = "https://ojwtikokfvlcinyudkne.supabase.co";
 const SUPABASE_KEY = "sb_publishable_sfHE0dEzg3EoEVRRd1vphQ_2PObBvv6";
@@ -168,6 +168,27 @@ export default function App() {
           <div style={S.searchWrap}>
             <span style={S.searchIcon}>🔍</span>
             <input style={S.searchInput} placeholder="Ara..." value={search} onChange={e => setSearch(e.target.value)} />
+          </div>
+          <div style={S.statsRow}>
+            <div style={S.statBox}>
+              <div style={S.statNum}>{clients.length}</div>
+              <div style={S.statLabel}>Müşteri</div>
+            </div>
+            <div style={S.statDivider} />
+            <div style={S.statBox}>
+              <div style={S.statNum}>{clients.reduce((acc, c) => acc + (c.visits||[]).length, 0)}</div>
+              <div style={S.statLabel}>Toplam Ziyaret</div>
+            </div>
+            <div style={S.statDivider} />
+            <div style={S.statBox}>
+              <div style={S.statNum}>{clients.filter(c => {
+                const lv = lastVisit(c);
+                if (!lv) return false;
+                const diff = (new Date() - new Date(lv.date)) / (1000*60*60*24);
+                return diff <= 30;
+              }).length}</div>
+              <div style={S.statLabel}>Bu Ay</div>
+            </div>
           </div>
           <div style={S.scroll}>
             {loading && <div style={S.loading}>Yükleniyor... ☁️</div>}
@@ -375,7 +396,12 @@ const S = {
   addBtn: { width:42, height:42, borderRadius:21, background:"#fff", color:"#111", border:"none",
     fontSize:26, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center",
     lineHeight:1, paddingBottom:2 },
-  searchWrap: { margin:"12px 18px 8px", background:"#F2F2F2", borderRadius:14,
+  statsRow: { display:"flex", alignItems:"center", margin:"10px 18px 4px", background:"#111",
+    borderRadius:16, padding:"14px 0" },
+  statBox: { flex:1, display:"flex", flexDirection:"column", alignItems:"center" },
+  statNum: { fontSize:22, fontWeight:700, color:"#fff", letterSpacing:-0.5 },
+  statLabel: { fontSize:11, color:"#888", marginTop:2, letterSpacing:0.5 },
+  statDivider: { width:1, height:30, background:"#333" },
     display:"flex", alignItems:"center", padding:"0 14px", flexShrink:0 },
   searchIcon: { fontSize:14, marginRight:8, opacity:0.4 },
   searchInput: { flex:1, border:"none", background:"transparent", padding:"11px 0",
