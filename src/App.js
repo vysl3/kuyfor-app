@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 
 const SUPABASE_URL = "https://ojwtikokfvlcinyudkne.supabase.co";
@@ -18,7 +19,7 @@ const db = async (method, path, body) => {
   return res;
 };
 
-const emptyVisit = { date: "", formula: "", care: "" };
+const emptyVisit = { date: "", formula: "", care: "", note: "" };
 const emptyClient = { firstName: "", lastName: "", phone: "" };
 
 export default function App() {
@@ -293,6 +294,7 @@ export default function App() {
             </div>
             {selectedVisit.formula && <div style={S.detailCard}><div style={S.detailLabel}>🎨 Boya Formülü</div><div style={S.detailValue}>{selectedVisit.formula}</div></div>}
             {selectedVisit.care && <div style={S.detailCard}><div style={S.detailLabel}>💆‍♀️ Bakım</div><div style={S.detailValue}>{selectedVisit.care}</div></div>}
+            {selectedVisit.note && <div style={S.detailCard}><div style={S.detailLabel}>📝 Genel Not</div><div style={S.detailValue}>{selectedVisit.note}</div></div>}
             <button style={S.deleteBtn} onClick={() => deleteVisit(selectedVisit.id)}>🗑 Ziyareti Sil</button>
           </div>
         </div>
@@ -347,6 +349,11 @@ function VisitFields({ form, setForm }) {
         <label style={S.fieldLabel}>Bakım Notu</label>
         <textarea style={{...S.input, ...S.textarea}} placeholder="Örn: Keratin bakım, maske..."
           value={form.care} onChange={e => setForm({...form, care: e.target.value})} />
+      </div>
+      <div style={S.fieldGroup}>
+        <label style={S.fieldLabel}>📝 Genel Not</label>
+        <textarea style={{...S.input, ...S.textarea}} placeholder="Serbest not ekle..."
+          value={form.note} onChange={e => setForm({...form, note: e.target.value})} />
       </div>
     </div>
   );
