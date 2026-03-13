@@ -160,7 +160,7 @@ export default function App() {
         <div style={S.screen}>
           <div style={S.header}>
             <div>
-              <div style={S.appTitle}>✂ Müşteri</div>
+              <div style={S.appTitle}>VK Müşteri</div>
               <div style={S.appSub}>Müşteri Kartı</div>
             </div>
             <button style={S.addBtn} onClick={() => { setClientForm(emptyClient); setView("addClient"); }}>+</button>
@@ -173,7 +173,7 @@ export default function App() {
             {loading && <div style={S.loading}>Yükleniyor... ☁️</div>}
             {!loading && filtered.length === 0 && (
               <div style={S.empty}>
-                <div style={{fontSize:48}}>✂</div>
+                <div style={{width:72,height:72,borderRadius:36,background:"#C17B5C",color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontSize:24,fontWeight:800,letterSpacing:-1,margin:"0 auto"}}>VK</div>
                 <div style={S.emptyText}>Henüz müşteri yok</div>
                 <button style={S.emptyBtn} onClick={() => setView("addClient")}>Müşteri Ekle</button>
               </div>
@@ -287,7 +287,7 @@ export default function App() {
           </div>
           <div style={S.scroll}>
             <div style={{...S.hero, paddingBottom:16}}>
-              <div style={{fontSize:42}}>✂</div>
+              <div style={{width:60,height:60,borderRadius:30,background:"#C17B5C",color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,fontWeight:800,letterSpacing:-1,margin:"0 auto"}}>VK</div>
               <div style={S.heroName}>{formatDate(selectedVisit.date)}</div>
               <div style={S.heroPhone}>{selectedClient.first_name} {selectedClient.last_name}</div>
             </div>
@@ -365,77 +365,77 @@ function VisitFields({ form, setForm }) {
 }
 
 const S = {
-  wrap: { minHeight:"100vh", background:"#F5F0EB", display:"flex", flexDirection:"column",
+  wrap: { minHeight:"100vh", background:"#fff", display:"flex", flexDirection:"column",
     fontFamily:"'Georgia', serif", position:"relative", maxWidth:480, margin:"0 auto" },
   screen: { flex:1, display:"flex", flexDirection:"column", minHeight:"100vh" },
   header: { padding:"52px 22px 14px", display:"flex", alignItems:"center", justifyContent:"space-between",
-    background:"#F5F0EB", borderBottom:"1px solid #E0D8CF", flexShrink:0, position:"sticky", top:0, zIndex:10 },
-  appTitle: { fontSize:22, fontWeight:700, color:"#3A2E28", letterSpacing:"-0.5px" },
-  appSub: { fontSize:12, color:"#9B8B7E", marginTop:1, fontStyle:"italic" },
-  addBtn: { width:42, height:42, borderRadius:21, background:"#C17B5C", color:"#fff", border:"none",
+    background:"#111", borderBottom:"1px solid #222", flexShrink:0, position:"sticky", top:0, zIndex:10 },
+  appTitle: { fontSize:22, fontWeight:700, color:"#fff", letterSpacing:"-0.5px" },
+  appSub: { fontSize:12, color:"#999", marginTop:1, fontStyle:"italic" },
+  addBtn: { width:42, height:42, borderRadius:21, background:"#fff", color:"#111", border:"none",
     fontSize:26, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center",
-    lineHeight:1, paddingBottom:2, boxShadow:"0 4px 12px rgba(193,123,92,0.4)" },
-  searchWrap: { margin:"12px 18px 8px", background:"#EDE6DE", borderRadius:14,
+    lineHeight:1, paddingBottom:2 },
+  searchWrap: { margin:"12px 18px 8px", background:"#F2F2F2", borderRadius:14,
     display:"flex", alignItems:"center", padding:"0 14px", flexShrink:0 },
-  searchIcon: { fontSize:14, marginRight:8, opacity:0.6 },
+  searchIcon: { fontSize:14, marginRight:8, opacity:0.4 },
   searchInput: { flex:1, border:"none", background:"transparent", padding:"11px 0",
-    fontSize:15, color:"#3A2E28", outline:"none", fontFamily:"Georgia, serif" },
+    fontSize:15, color:"#111", outline:"none", fontFamily:"Georgia, serif" },
   scroll: { flex:1, overflowY:"auto", padding:"8px 0 40px" },
-  loading: { textAlign:"center", padding:"40px", color:"#9B8B7E", fontSize:16, fontStyle:"italic" },
-  card: { width:"calc(100% - 36px)", background:"#fff", border:"none", borderRadius:18,
+  loading: { textAlign:"center", padding:"40px", color:"#888", fontSize:16, fontStyle:"italic" },
+  card: { width:"calc(100% - 36px)", background:"#F8F8F8", border:"0.5px solid #E5E5E5", borderRadius:18,
     padding:"14px 16px", margin:"0 18px 10px", display:"flex", alignItems:"center",
-    cursor:"pointer", boxShadow:"0 2px 12px rgba(0,0,0,0.06)", textAlign:"left", boxSizing:"border-box" },
+    cursor:"pointer", textAlign:"left", boxSizing:"border-box" },
   avatar: { width:46, height:46, borderRadius:23, color:"#fff", fontWeight:700, fontSize:17,
-    display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, letterSpacing:1 },
+    display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, letterSpacing:1, background:"#111" },
   cardInfo: { flex:1, marginLeft:14 },
-  cardName: { fontSize:16, fontWeight:700, color:"#3A2E28" },
-  cardPhone: { fontSize:13, color:"#9B8B7E", marginTop:2 },
-  cardMeta: { fontSize:12, color:"#C17B5C", marginTop:3 },
-  chevron: { color:"#C8BEB7", fontSize:22, marginLeft:6 },
-  countBar: { textAlign:"center", padding:"10px", fontSize:12, color:"#B0A49B",
-    borderTop:"1px solid #E0D8CF", background:"#F5F0EB", flexShrink:0, fontStyle:"italic" },
+  cardName: { fontSize:16, fontWeight:700, color:"#111" },
+  cardPhone: { fontSize:13, color:"#888", marginTop:2 },
+  cardMeta: { fontSize:12, color:"#555", marginTop:3 },
+  chevron: { color:"#bbb", fontSize:22, marginLeft:6 },
+  countBar: { textAlign:"center", padding:"10px", fontSize:12, color:"#999",
+    borderTop:"0.5px solid #E5E5E5", background:"#fff", flexShrink:0, fontStyle:"italic" },
   empty: { display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:"60px 20px", gap:12 },
-  emptyText: { fontSize:16, color:"#9B8B7E", fontStyle:"italic" },
-  emptyBtn: { marginTop:8, background:"#C17B5C", color:"#fff", border:"none", borderRadius:22,
+  emptyText: { fontSize:16, color:"#888", fontStyle:"italic" },
+  emptyBtn: { marginTop:8, background:"#111", color:"#fff", border:"none", borderRadius:22,
     padding:"12px 28px", fontSize:15, cursor:"pointer", fontFamily:"Georgia, serif" },
-  backBtn: { fontSize:32, color:"#C17B5C", background:"none", border:"none", cursor:"pointer", lineHeight:1, padding:"0 4px", marginLeft:-4 },
-  headerTitle: { fontSize:16, fontWeight:700, color:"#3A2E28", letterSpacing:"-0.3px" },
-  saveBtn: { background:"#C17B5C", color:"#fff", border:"none", borderRadius:16, padding:"8px 16px",
+  backBtn: { fontSize:32, color:"#fff", background:"none", border:"none", cursor:"pointer", lineHeight:1, padding:"0 4px", marginLeft:-4 },
+  headerTitle: { fontSize:16, fontWeight:700, color:"#fff", letterSpacing:"-0.3px" },
+  saveBtn: { background:"#fff", color:"#111", border:"none", borderRadius:16, padding:"8px 16px",
     fontSize:14, cursor:"pointer", fontFamily:"Georgia, serif", fontWeight:600 },
-  editBtnH: { background:"none", color:"#C17B5C", border:"none", fontSize:15, cursor:"pointer", fontFamily:"Georgia, serif", fontWeight:600 },
+  editBtnH: { background:"none", color:"#aaa", border:"none", fontSize:15, cursor:"pointer", fontFamily:"Georgia, serif", fontWeight:600 },
   hero: { display:"flex", flexDirection:"column", alignItems:"center", padding:"24px 0 20px", gap:6 },
   avatarLg: { width:72, height:72, borderRadius:36, color:"#fff", fontWeight:700, fontSize:26,
-    display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 6px 20px rgba(0,0,0,0.15)" },
-  heroName: { fontSize:22, fontWeight:700, color:"#3A2E28", marginTop:4 },
-  heroPhone: { fontSize:15, color:"#9B8B7E", fontStyle:"italic" },
-  heroBadge: { background:"#F0E6DD", color:"#C17B5C", borderRadius:20, padding:"4px 14px",
-    fontSize:12, fontWeight:700, marginTop:4, letterSpacing:0.5 },
-  addVisitBtn: { margin:"0 18px 16px", width:"calc(100% - 36px)", background:"#C17B5C", color:"#fff",
+    background:"#111", display:"flex", alignItems:"center", justifyContent:"center" },
+  heroName: { fontSize:22, fontWeight:700, color:"#111", marginTop:4 },
+  heroPhone: { fontSize:15, color:"#888", fontStyle:"italic" },
+  heroBadge: { background:"#F2F2F2", color:"#333", borderRadius:20, padding:"4px 14px",
+    fontSize:12, fontWeight:700, marginTop:4, letterSpacing:0.5, border:"0.5px solid #DDD" },
+  addVisitBtn: { margin:"0 18px 16px", width:"calc(100% - 36px)", background:"#111", color:"#fff",
     border:"none", borderRadius:16, padding:"14px", fontSize:15, cursor:"pointer",
-    fontFamily:"Georgia, serif", fontWeight:600, boxShadow:"0 4px 14px rgba(193,123,92,0.35)", boxSizing:"border-box" },
-  noVisit: { textAlign:"center", color:"#B0A49B", fontStyle:"italic", padding:"20px", fontSize:14 },
+    fontFamily:"Georgia, serif", fontWeight:600, boxSizing:"border-box" },
+  noVisit: { textAlign:"center", color:"#aaa", fontStyle:"italic", padding:"20px", fontSize:14 },
   visitCard: { width:"calc(100% - 36px)", margin:"0 18px 0", background:"#fff", border:"none",
     display:"flex", alignItems:"flex-start", cursor:"pointer", padding:"12px 14px 12px 0",
-    textAlign:"left", borderBottom:"1px solid #F0EAE4", boxSizing:"border-box" },
+    textAlign:"left", borderBottom:"0.5px solid #EEE", boxSizing:"border-box" },
   visitLine: { display:"flex", flexDirection:"column", alignItems:"center", width:32, flexShrink:0, paddingTop:4 },
-  visitDot: { width:10, height:10, borderRadius:5, background:"#C17B5C", flexShrink:0 },
-  visitConnector: { width:2, height:40, background:"#E8DDD6", marginTop:4 },
+  visitDot: { width:10, height:10, borderRadius:5, background:"#111", flexShrink:0 },
+  visitConnector: { width:2, height:40, background:"#DDD", marginTop:4 },
   visitBody: { flex:1 },
-  visitDate: { fontSize:14, fontWeight:700, color:"#3A2E28", marginBottom:4 },
-  visitFormula: { fontSize:12, color:"#7B6B60", marginBottom:2 },
-  visitCare: { fontSize:12, color:"#9B8B7E" },
+  visitDate: { fontSize:14, fontWeight:700, color:"#111", marginBottom:4 },
+  visitFormula: { fontSize:12, color:"#444", marginBottom:2 },
+  visitCare: { fontSize:12, color:"#666" },
   fieldGroup: { marginBottom:18 },
-  fieldLabel: { display:"block", fontSize:12, fontWeight:600, color:"#9B8B7E", marginBottom:6, letterSpacing:0.8, textTransform:"uppercase" },
-  input: { width:"100%", background:"#fff", border:"1.5px solid #E0D8CF", borderRadius:14,
-    padding:"12px 14px", fontSize:15, color:"#3A2E28", outline:"none", fontFamily:"Georgia, serif", boxSizing:"border-box" },
+  fieldLabel: { display:"block", fontSize:12, fontWeight:600, color:"#666", marginBottom:6, letterSpacing:0.8, textTransform:"uppercase" },
+  input: { width:"100%", background:"#F8F8F8", border:"0.5px solid #DDD", borderRadius:14,
+    padding:"12px 14px", fontSize:15, color:"#111", outline:"none", fontFamily:"Georgia, serif", boxSizing:"border-box" },
   textarea: { minHeight:80, resize:"none", lineHeight:1.6 },
-  detailCard: { background:"#fff", borderRadius:18, padding:"14px 18px", margin:"0 18px 12px", boxShadow:"0 2px 10px rgba(0,0,0,0.05)" },
-  detailLabel: { fontSize:11, fontWeight:700, color:"#C17B5C", letterSpacing:1, textTransform:"uppercase", marginBottom:6 },
-  detailValue: { fontSize:15, color:"#3A2E28", lineHeight:1.55 },
+  detailCard: { background:"#F8F8F8", borderRadius:18, padding:"14px 18px", margin:"0 18px 12px", border:"0.5px solid #E5E5E5" },
+  detailLabel: { fontSize:11, fontWeight:700, color:"#333", letterSpacing:1, textTransform:"uppercase", marginBottom:6 },
+  detailValue: { fontSize:15, color:"#111", lineHeight:1.55 },
   deleteBtn: { width:"calc(100% - 36px)", margin:"8px 18px 24px", background:"none",
-    border:"1.5px solid #E8C4B8", borderRadius:16, color:"#C17B5C", padding:"13px",
+    border:"0.5px solid #DDD", borderRadius:16, color:"#888", padding:"13px",
     fontSize:15, cursor:"pointer", fontFamily:"Georgia, serif", boxSizing:"border-box" },
   toast: { position:"fixed", bottom:40, left:"50%", transform:"translateX(-50%)", color:"#fff",
     padding:"10px 22px", borderRadius:20, fontSize:13, zIndex:100, whiteSpace:"nowrap",
-    boxShadow:"0 4px 20px rgba(0,0,0,0.3)" },
+    background:"#111" },
 };
